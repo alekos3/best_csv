@@ -1,6 +1,6 @@
 __author__ = "Alexios Nersessian"
 __email__ = "nersessian@gmail.com"
-__version__ = "v1"
+__version__ = "1.1"
 
 """
 MIT License
@@ -37,25 +37,25 @@ def csv_to_dict(file_name:str, column_as_key:int) -> dict:
     """
     information_dict = {}
     tmp_dict = {}
-    keys = []
 
     try:
         # Open the CSV file
         with open(file_name, 'r') as f:
             raw = f.readlines()
 
-        for i, line in enumerate(raw):
+        keys = raw[:1][0].strip().split(',')
+        keys.pop(column_as_key-1)
+
+        for i, line in enumerate(raw[1:]):
             tmp = line.replace("\n", "").split(",")
+            master_key = tmp[column_as_key-1]
+            tmp.pop(column_as_key-1)
 
-            if i > 0:
-                for x, key in enumerate(keys):
-                    tmp_dict[key] = tmp[x+1]
-                information_dict[tmp[column_as_key-1]] = tmp_dict
+            for x, key in enumerate(keys):
+                tmp_dict[key] = tmp[x]
 
-            else:
-                for field in tmp:
-                    keys.append(field)
-                keys.pop(0)
+            information_dict[master_key] = tmp_dict
+
             tmp_dict = {}
 
         return information_dict
