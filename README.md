@@ -1,11 +1,11 @@
-
 # best_csv
 
-This library converts a csv file to a Python dictionary. "So what!?!?" you may ask :). This library does it better, more efficienty and greatly improves your querry times (~30-40% faster than standard Python csv lib). 
+This library converts a csv file to a Python dictionary. "So what!?!?" you may ask :). This library does it better, more efficienty and greatly improves your querry times over the built in csv Python library. The built in csv Python library has a lookup complexity 
+of O(n) where runtime grows directly in proportion to n; best_csv has a lookkup complexity of O(1) which means that it takes a constant time to lookup regardless of the dataset size.
 
-Now, this library might not be ideal for all csv datasets but is great for datasets that have some sort of unique identifier for any given row of information. For example, if we have a dataset of employees with ID numbers then this library would be ideal because you can have employee IDs as the key for any given employee in the dictionary. 
+Now, this library might not be ideal for all csv datasets but is great for datasets that have a a column that we can use as a unique identifier for any given row of information. For example, if we have a dataset of employees and each row is an employee record we can use the employee IDs as the key for any given employee in the dictionary. 
 
-The statndard Python csv library will create a list of dicts so if you want to search for specific user IDs you have to potentialy loop though all of the dataset to find the employee you want; whereas with best_csv you simply call the ID you need without having to loop through the dataset. This is great if you have massive datasets and you are running multiple querries.
+The statndard Python csv library will create a list of dicts so if you want to search for specific employee IDs you have to potentialy loop though all of the dataset to find the employee you want; whereas with best_csv you simply call the employee ID you need without having to loop through the dataset. This is great if you have massive datasets and you are running multiple querries.
 
 
 
